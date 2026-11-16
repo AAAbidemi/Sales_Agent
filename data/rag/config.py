@@ -12,7 +12,7 @@ from dotenv import load_dotenv
 # Project root = the folder that contains the `rag` package and `data/`.
 # Resolving from this file (instead of the current working directory) means
 # the pipeline works no matter where you launch it from.
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
 # Where the policy documents live.
 DATA_FILE_PATH = PROJECT_ROOT / "data" / "policies.txt"
@@ -36,7 +36,7 @@ class ConfigError(RuntimeError):
 
 def load_env() -> None:
     """Load variables from the project's .env file (no-op if it is absent)."""
-    load_dotenv(PROJECT_ROOT / ".env")
+    load_dotenv(PROJECT_ROOT / "data" / ".env")
 
 
 def require_key(name: str) -> str:
